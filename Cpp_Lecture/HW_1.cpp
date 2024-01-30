@@ -6,19 +6,23 @@ using namespace std;
 -check each digit
 - print out if both digits are odd.
 Very important
-Make sure to check that the answer you get is indeed a perfect square.*/
+Make sure to check that the answer you get is indeed a perfect square.
+Answer is 13*13 = 169
+*/
 int main(){
     int num=1;
-    while(true){
+    bool Run= true;
+    while(Run){
         int squared = num *num;
-        if(squared >10){
-            int FirstDigit = squared %10, SecondDigit = squared%100;
-            if(FirstDigit%2 ==1 && SecondDigit%2 == 1){
-              cout<<squared<<" is a perfect square whose last two digits are both odd!"<<endl;
-              return false;
+        if(squared >=10){
+            int FirstDigit = squared %10, SecondDigit = (squared/10)%10;
+            cout<<FirstDigit<<endl<<SecondDigit<<endl;
+            if(FirstDigit%2 ==1 && SecondDigit %2 == 1){
+                cout<<num <<" x "<< num<<" = "<<squared<<" is a perfect square whose last two digits are both odd!"<<endl;
+                Run = false;
             }
         }
+        num++;
     }
-    cout<<"hello";
     return 0;
 }
