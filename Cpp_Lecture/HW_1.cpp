@@ -10,19 +10,18 @@ Make sure to check that the answer you get is indeed a perfect square.
 Answer is 13*13 = 169
 */
 int main(){
-    int num=1;
+    int i=1;
     bool Run= true;
     while(Run){
-        int squared = num *num;
-        if(squared >=10){
-            int FirstDigit = squared %10, SecondDigit = (squared/10)%10;
-            cout<<FirstDigit<<endl<<SecondDigit<<endl;
+        int squared = i *i;
+        //if(squared >=10){
+            int FirstDigit = squared %10, SecondDigit = squared/10%10;
             if(FirstDigit%2 ==1 && SecondDigit %2 == 1){
-                cout<<num <<" x "<< num<<" = "<<squared<<" is a perfect square whose last two digits are both odd!"<<endl;
+                cout<<i <<" x "<< i<<" = "<<squared<<" is a perfect square whose last two digits are both odd!"<<endl;
                 Run = false;
             }
-        }
-        num++;
+        //}
+        i++;
     }
     return 0;
 }
