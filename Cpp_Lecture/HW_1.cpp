@@ -16,7 +16,7 @@ int main(){
         int squared = num *num;
         if(squared >=10){
             int FirstDigit = squared %10, SecondDigit = (squared/10)%10;
-            cout<<FirstDigit<<endl<<SecondDigit<<endl;
+            
             if(FirstDigit%2 ==1 && SecondDigit %2 == 1){
                 cout<<num <<" x "<< num<<" = "<<squared<<" is a perfect square whose last two digits are both odd!"<<endl;
                 Run = false;
