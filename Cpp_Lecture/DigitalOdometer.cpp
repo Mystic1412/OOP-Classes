@@ -4,7 +4,6 @@ using namespace std;
 int main(){
     int win[6] = {0,0,0,0,0,0};
     
-    
     for(int i0 = 0; i0<10;i0++){
         win[0] =i0;
         for(int i1 =0; i1<10;i1++){
@@ -27,6 +26,6 @@ int main(){
             }   
         }     
     }
-    
+
     return 0;
 }
