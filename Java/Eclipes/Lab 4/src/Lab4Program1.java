@@ -21,7 +21,12 @@ public class Lab4Program1 {
 		JOptionPane.showMessageDialog(null, "The word " + inputWord + " " + isOrIsNot + " on the list.");
 	} //main
 
-	public static boolean wordIsThere(String findMe, String[] theList){
-
+	public static boolean wordIsThere(String findMe, String[] theList) {
+		for (int i = 0; i<8; i++){
+			if(findMe.equals(theList[i])){
+				return true;
+			}
+		}
+		return false;
 	} // wordIsThere
 } // class Lab4Program1
