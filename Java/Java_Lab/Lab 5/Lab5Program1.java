@@ -3,7 +3,6 @@ import javax.swing.JOptionPane;
 public class Lab5Program1 {
 	
 	public static void main(String[] args) {
-	
 		//String[] wordArray = { "hello", "goodbye", "cat", "dog", "red", "green", "sun", "moon" };
 		String isOrIsNot, inputWord;
 			
