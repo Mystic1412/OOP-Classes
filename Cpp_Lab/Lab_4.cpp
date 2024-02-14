@@ -1,6 +1,8 @@
 #include <iostream>
 using namespace std;
+bool ok(int board[8][]){
 
+}
 int main(){
     int r = 0, c = 0;
     int solutionCountec = 0;
@@ -23,7 +25,7 @@ int main(){
                                 for(int c7=0; c7<8;c7++){
                                     b[7][c7] =1;
 
-                                    //ok(b) to check only happens once!
+                                    ok(b); //to check only happens once!
 
                                     b[7][c7]=0;
 
