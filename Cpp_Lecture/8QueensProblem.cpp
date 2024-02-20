@@ -24,8 +24,7 @@ nextRow:
     for(int i=c; i>-1;i--){//for each square to the left of the current square
         if(b[r][i]==1){ //if there is a queen on that square
             goto nextRow; //goto nextRow;
-        }    
-            
+        }          
     }
 
 
