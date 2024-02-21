@@ -1,6 +1,6 @@
 import javax.swing.JOptionPane;
 
-public class Project0 {
+public class test {
     public static void main(String[] args){
         
         while(true){ //keep making the user to type a sentence until they type 'stop'
@@ -12,12 +12,12 @@ public class Project0 {
 
             
             int Upper_E = 0, Lower_e= 0;
-            for(int i=0; i<UserSentence.length();i++){
-                if(UserSentence.charAt(i) == 'E') Upper_E++;
-                if(UserSentence.charAt(i) == 'e') Lower_e++;
+            for(int i=0; i<UserSentence.length();i++){ //loops through each character from the sentence
+                if(UserSentence.charAt(i) == 'E') Upper_E++; //counts the upper case E's
+                if(UserSentence.charAt(i) == 'e') Lower_e++; //counts the upper case e's
             }
             
-            JOptionPane.showMessageDialog(null, "Number of lower case e's: "+Lower_e+"\nNumber of upper case E's: "+Upper_E);
+            JOptionPane.showMessageDialog(null, "Number of lower case e's: "+Lower_e+"\nNumber of upper case E's: "+Upper_E); //Shows the message
         }
     }
 }
