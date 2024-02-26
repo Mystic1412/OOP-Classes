@@ -13,8 +13,8 @@ public class test {
             
             int Upper_E = 0, Lower_e= 0;
             for(int i=0; i<UserSentence.length();i++){ //loops through each character from the sentence
-                if(UserSentence.charAt(i) == 'E') Upper_E++; //counts the upper case E's
-                if(UserSentence.charAt(i) == 'e') Lower_e++; //counts the upper case e's
+                if(UserSentence.charAt(i) == 'E') Upper_E++; //counts the upper case E's if found
+                if(UserSentence.charAt(i) == 'e') Lower_e++; //counts the upper case e's if found
             }
             
             JOptionPane.showMessageDialog(null, "Number of lower case e's: "+Lower_e+"\nNumber of upper case E's: "+Upper_E); //Shows the message
