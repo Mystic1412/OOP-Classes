@@ -7,10 +7,7 @@ bool ok(int arr[]){
     for (int c=0; c<8; c++){
         //Look at the columns before
         for(int i=0; i<c; i++){
-            if(arr[c]==arr[i]){
-                return false;
-            }
-            if((c-i)==abs(arr[c]-arr[i])){
+            if(arr[c]==arr[i]|| (c-i)==abs(arr[c]-arr[i])){
                 return false;
             }
         }
