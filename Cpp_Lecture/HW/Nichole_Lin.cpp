@@ -1,73 +1,53 @@
 #include <iostream>
+#include <cmath>
 using namespace std;
 
-int main() {
-    int numSolutions = 1; // Initialize numSolutions to 0
-    int b[8][8] = {};  // Initialize the board to 0
-    int r = 0, c = 0;  // Start in the 1st row, 1st column
-    b[r][c] = 1;       // Place the first queen on the upper left corner
-
-nextCol:
-    c++; // Move to the next column
-    if(c==8){ // If you passed the last column
-        goto printSolutions; //goto print
-    }
-    r=-1; // Otherwise start at the "TOP" of the column
-
-nextRow:
-    r++; // Move to the next row
-    if(r==8){// If you have passed the end of the column
-        goto backtrack; //goto backtrack
-    }  
-
-   // If there is a queen in the same row (to the left), goto nextRow
-    for(int i=c; i>-1;i--){//for each square to the left of the current square
-        if(b[r][i]==1){ //if there is a queen on that square
-            goto nextRow; //goto nextRow;
-        }    
-            
-    }
-
-
-    // If there is a queen in the upper-left diagonal, goto nextRow
-    for (int i = 1;(r-i) >= 0 && (c-i) >=0 ;i++){ //for (int i = 1; ...; i++) // End the loop when you are above or left of the chessboard
-        if(b[r-i][c-i]==1){ //if there is a queen i spots above and left of the current square
-            goto nextRow; //goto nextRow;
-        }
-    }   
-      
-
-    // If there is a queen in the lower-left diagonal, goto nextRow
-    for (int i = 1;(r+i)<=7 && (c-i) >=0 ;i++){ //for (int i = 1; ...; i++) // End the loop when you are below or left of the chessboard
-        if(b[r+i][c-i]==1){ //if (there is a queen i spots below and left of the current square)
-            goto nextRow;//goto nextRow;
+bool ok(int arr[],int c){
+    for(int i=0; i<c; i++){
+        if(arr[c]==arr[i] || (c-i)==abs(arr[c]-arr[i])){
+           return false;
         }
     }
-    b[r][c]=1;
-    goto nextCol;//goto nextCol;
+    return true;
+}
 
-backtrack:
-    c--;// Move to the previous column
-    if(c==-1){//if (you have moved to the left of the chessboard)
-        return 0;//exit the program
-    }
-    r=0;
-    while(b[r][c]!=1){// Find the square in the column with a queen in it and set r to the row number of that square
-        r++; 
-    }
-    b[r][c]=0; // Remove the queen from the current square
-    goto nextRow;//goto nextRow;
+int main(){
+    int board[8], col=0, counter =1;
+    board[col]=0;
 
-printSolutions:
-    cout << "Solution #" << numSolutions++ << ":\n";
-    //Use a nested loop to print the chessboard
-    for(int r=0;r<8;r++){
-        for(int c=0;c<8;c++){
-            cout<<b[r][c]<<' ';
-        }
-        cout<<endl;
-    }
-    cout<<endl;
+NextCol:    //next col
+    col++;
+    if(col==8) goto print;
+    board[col]=-1;
     
-    goto backtrack;
+NextRow:
+    board[col]++;
+    if(board[col]==8)goto BackTrack;
+  
+if(ok(board, col)==false){
+    goto NextRow;
+}
+goto NextCol;
+
+BackTrack:
+    col--;
+    if(col==-1) return 0;
+    goto NextRow;
+
+print: //print
+    cout<<"Solution: "<<counter<<endl;//print results
+        for(int row=0; row<8;row++){
+            for (int col=0; col<8; col++){
+                if(board[col]==row){
+                    cout<<"1"<<" ";
+                }
+                else{
+                    cout<<"0"<<" ";
+                }
+            }
+            cout<<endl;
+        }
+        counter++;
+        cout<<endl;
+    goto BackTrack;
 }
