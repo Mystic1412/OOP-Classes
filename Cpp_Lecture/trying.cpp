@@ -1,72 +1,75 @@
-#include <iostream>
+#include<iostream>
+#include<cmath>
 using namespace std;
+/*
+* Title:          Eight Numbers in a Cross
+* Description :   The purpose of this program is to write 8 numbers in a cross such that no two adjacent squares contains 
+                  consecutive numbers. There are 4 solutions to this problem. This program will utilize the backtracking algorithm.
+* Author:         Guideline from Alex Chen's website.
+*                 Sulbha Aggarwal- Wrote the code for Eight Numbers in Cross.
+*/
 
-int main() {
-    int numSolutions = 1; // Initialize numSolutions to 0
-    int b[8][8] = {};  // Initialize the board to 0
-    int r = 0, c = 0;  // Start in the 1st row, 1st column
-    b[r][c] = 1;       // Place the first queen on the upper left corner
+bool test(int cross[], int x) 
+{
+	static int checkList[8][5] = 
+	{
+		{-1},
+		{0,-1},
+		{1,-1},
+		{0,1,2,-1},
+		{1,2,3,-1},
+		{2,4,-1},
+		{0,3,4,-1},
+		{3,4,5,6,-1},
+	};
+	//fill in 
+	for( int i = 0 ; i < x ; i++ )                                   //test to place a unique number in cross at index x
+		if( cross[x] == cross[i] )
+			return false ;
+	for( int i = 0 ; checkList[x][i] != -1 ; i++ )                    //test to check if the number at index x is not consective of its adjacent indexes
+		if( abs( cross[x] - cross[checkList[x][i]]) == 1  )
+			return false ;
+	return true ;
+} 
 
-nextCol:
-    c++; // Move to the next column
-    if (c==8){// If you passed the last column
-        goto printSolutions;//goto print
-    }
-    r=-1;// Otherwise start at the "TOP" of the column
+void print( int cross[] ) 
+{
+	static int count = 0;
+	cout << "Soultion number: " << ++count << endl;
+	cout << " " << cross[1] << cross[2] << endl;
+	cout << cross[0] << cross[3] << cross[4] << cross[5] << endl;
+	cout << " " << cross[6] << cross[7] << endl;
+	return;
+}
 
-nextRow:
-    r++;// Move to the next row
-    if (r==8){ // If you have passed the end of the column
-        goto backtrack;//goto backtrack
-    }
-
-    // If there is a queen in the same row (to the left), goto nextRow
-    for(int i=c; i>-1;i--){ //for each square to the left of the current square
-        if(b[r][i]==1){    //if there is a queen on that square
-            goto nextRow;//goto nextRow;
-        }
-    }
-    
-    
-    // If there is a queen in the upper-left diagonal, goto nextRow
-    for (int i=1;(r-i)>=0 && (c-i)>=0;i++){ //for (int i = 1; ...; i++) // End the loop when you are above or left of the chessboard
-        if(b[r-i][c-i]==1){    //if there is a queen i spots above and left of the current square
-            goto nextRow;//goto nextRow;
-        }
-    }
-
-
-    // If there is a queen in the lower-left diagonal, goto nextRow
-    for (int i=1;(r+i)<=7 && (c-i)>=0;i++){ //for (int i = 1; ...; i++) // End the loop when you are below or left of the chessboard
-        if (b[r+i][c-i]==1){ //if (there is a queen i spots below and left of the current square)
-            goto nextRow;//goto nextRow;
-        }
-    }
-    b[r][c]=1;
-    goto nextCol;  //goto nextCol;
-
-backtrack:
-    c--;  // Move to the previous column
-    if (c==-1){  //if (you have moved to the left of the chessboard)
-        return 0;   //exit the program
-    }
-    r=0;
-    while(b[r][c]!=1){ // Find the square in the column with a queen in it and set r to the row number of that square
-        r++;
-    }
-    b[r][c]=0;  // Remove the queen from the current square
-    goto nextRow; //goto nextRow;
-
-printSolutions:
-    cout << "Solution #" << numSolutions++ << ":\n";
-    for(int r=0;r<8;r++){ 
-    //Use a nested loop to print the chessboard
-        for(int c=0; c<8;c++){
-            cout<<b[r][c]<<' ';
-        }
-        cout<<endl;
-    }
-    cout<<endl;
-
-    goto backtrack;
+int main() 
+{
+	//use the same 1d 8 queens main function
+	int cross[8] = {0} , c = 0 ;
+	cross[c] = 1 ;
+	c++ ;
+	while( c >= 0 )
+	{
+		if( c > 7 )
+		{
+			print( cross ) ;
+			c-- ;
+		}
+		else
+			cross[c] = 0 ;
+		
+		while( c >= 0 && c < 8 )
+		{
+			cross[c]++ ;
+			if( cross[c] > 8 )
+					c-- ;
+			else
+				if( test( cross, c ) ==  true )
+				{
+					c++ ;
+					break ;
+				}
+		}
+	}
+	return 0 ;	
 }
