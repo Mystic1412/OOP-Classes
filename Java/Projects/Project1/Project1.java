@@ -1,34 +1,51 @@
+import java.io.FileReader;
+
 import javax.swing.*;
 public class Project1 {
     public static void main(String[] arg){
-    // while(true){
-    //     if(UserSentence.equalsIgnoreCase("STOP")){ //checks if the user types stop so the program can stop
-    //         System.exit(0);
-    //     }
-    // }
-        //LETTERS: A E I L N S T
-        char Letters[]= {'A','E','I','L','N','S','T'}; //These are the letter options
-        String UserInput = JOptionPane.showInputDialog("Using the letters:\nA E I L N S T");
-        UserInput = UserInput.toUpperCase(); //Turns the user input into all capital
+        //static String inFileName = "numbers.txt";
+        FileReader 
+        while(true){
+            //LETTERS: A E I L N S T
+            char Letters[]= {'a','e','i','l','n','s','t'}; //These are the letter options
+            String UserInput = JOptionPane.showInputDialog("Using the letters:\nA E I L N S T");
+            System.err.println(UserInput);
+            UserInput = UserInput.toLowerCase(); //Turns the user input into all lower case
+            System.err.println(CheckingLetters(UserInput, Letters));
 
-        // for (int Input_i=0; Input_i<UserInput.length();Input_i++){
-        //     for(int Letter_i=0; Letter_i<7;Letter_i++){
-        //         if(UserInput.charAt(Input_i)==Letters[Letter_i]){
-        //         }
-        //         // else UserInput = JOptionPane.showInputDialog("TRY AGAIN!\nUsing  ONLY the letters:\nA E I L N S T");
-        //     }
-        // }
+            if(UserInput.equalsIgnoreCase("STOP")){ //checks if the user types stop so the program can stop
+                System.exit(0);
+            }
+            
+            while(CheckingLetters(UserInput, Letters)==false){
+                UserInput = JOptionPane.showInputDialog("TRY AGAIN\nUsing ONLY these letters:\nA E I L N S T");
+                UserInput = UserInput.toLowerCase(); 
+            }
 
-        
+            while(UserInput.length()<4){
+                UserInput = JOptionPane.showInputDialog("TRY AGAIN\nMust be 5 letters long\nUsing  these letters:\nA E I L N S T");
+                UserInput = UserInput.toLowerCase(); 
+            }
+            
+            
+            
+        }
+        }
 
-    }
     public static boolean CheckingLetters(String UserInputed, char Letter_arr[]){
-        for (int Letter_i=0; Letter_i<Letters.length;Letter_i++){
-            for(int User_i=0; User_i< UserInput.length(); User_i++){
-                if(Letters[Letter_i]!= UserInput.charAt(User_i)){
-                    UserInput = JOptionPane.showInputDialog("TRY AGAIN!\nUsing  ONLY the letters:\nA E I L N S T");
-                }
+        int count = 0;
+        for(int user=0; user<UserInputed.length();user++){
+            for(int i =0; i<Letter_arr.length;i++){
+                if(Letter_arr[i] == UserInputed.charAt(user)){
+                    count++;
             }
         }
     }
+    if (count ==UserInputed.length()){
+        return true;
+    }else return false;
+    }
+
+    
+
 }
