@@ -1,10 +1,17 @@
 import java.io.FileReader;
+import java.util.Scanner;
+import java.io.File;
 
 import javax.swing.*;
+
 public class Project1 {
     public static void main(String[] arg){
         //static String inFileName = "numbers.txt";
-        FileReader 
+        File wordFile = new File("Words.txt");
+
+        Scanner Readline = new Scanner(wordFile);
+        
+        
         while(true){
             //LETTERS: A E I L N S T
             char Letters[]= {'a','e','i','l','n','s','t'}; //These are the letter options
