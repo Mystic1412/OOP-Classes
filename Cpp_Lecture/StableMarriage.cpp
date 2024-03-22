@@ -27,7 +27,7 @@ bool ok(int pro[], int c) { // Finish this code 0 for most liked 2 for least lik
 	*/
 
 	//if we pass the loop, what do we return?
-
+    
     for (int i=0;i<c;i++){
         if(pro[i]==pro[c]){
             return false;
@@ -37,16 +37,11 @@ bool ok(int pro[], int c) { // Finish this code 0 for most liked 2 for least lik
         //man i liking current man's wife more than his own wife 
         //  mp[i][pro[c]] < mp[i][pro[i]], it means that Man_i likes Man_c's wife more than his own wife
         //                                   wp[pro[i]][c] < wp[pro[i]][i], means Man_'c wife likes Man_i more her own husband
-        if((mp[i][pro[c]] < mp[i][pro[i]] && wp[pro[i]][c] < wp[pro[i]][i])){
-            return false;
-        }
-
         //Third condition checks if (Man_c) and (Man_i's wife) both like each other more than their own spouse
-        if(mp[c][pro[i]] < mp[c][pro[c]] && wp[i][c] < wp[i][i]){
+        if((mp[i][pro[c]] < mp[i][pro[i]] && wp[pro[c]][i] < wp[pro[c]][c]) || (mp[c][pro[i]] < mp[c][pro[c]] && wp[pro[i]][c] < wp[pro[i]][i])){
             return false;
         }
     }
-    
     return true;
 }
 
@@ -55,36 +50,33 @@ void print(int q[]) {
 	cout << "Solution #" << ++solution << ":\nMan\tWoman\n";
 	//Finish this print function such that you print the index (man) and value (woman) with a tab inbetween
     for(int i=0; i<3;i++){
-        cout<<i<<"  "<<q[i]<<endl;
+        cout<<i<<"\t"<<q[i]<<endl;
     }
 }
 
 
 int main() {
-    int q[3] ={}, c=0; //c= first current
-    q[c] =0; //current women
+    int q[3] ={}, c=0;
+    q[c]=0;
 
-    while(c>=0){
-        c++;
+    while (c >= 0) { 
+		if(c == 2 ){
+			print(q);
+			c--; // Call the print function and backtrack
+		}else{
+			q[++c]=-1;
+		}while (c >= 0) {
+			q[c]++;
 
-        if(c>2){ //checks for everything that's printed
-            print(q);
-            c--;
-        }else{
-            q[c]=0;
-        }
-        while(c>=0&&c<3){
-            q[c]++;
-
-            if(q[c]>3){
-                c--;
-            }else{
-                if(ok(q,c)){
-                    break;
-                }
-            }
-        }
-    }
+			if(q[c] == 3){// If you have passed the end of the box, backtrack
+				c--;
+			}else{
+				if(ok(q, c)){// If the ok function it returns true, break out of this loop to move on from the outer loop
+					break;
+				}
+			}
+		}
+	}
 	//Write the main function.
 	//The main function is the same as 8 cross. EXCEPT the array size is different.
 	return 0;
