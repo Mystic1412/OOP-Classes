@@ -60,6 +60,7 @@ int main() {
     q[c]=0;
 
     while (c >= 0) { 
+		
 		if(c == 2 ){
 			print(q);
 			c--; // Call the print function and backtrack
