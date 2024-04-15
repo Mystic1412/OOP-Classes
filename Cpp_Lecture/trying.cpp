@@ -1,16 +1,13 @@
 #include <iostream>
+#include <vector>
 using namespace std;
-int main( )
-{ typedef int my_2darray[1][1];
-my_2darray b[3][2];
-cout<<sizeof(b)<<endl;
-cout<<sizeof(b+0)<<endl;
-cout<<sizeof(*(b+0))<<endl;
-// the next line prints 0012FF4C
-cout<<"The address of b is: "<<b<<endl;
-cout<<"The address of b+1 is: "<<b+1<<endl;
-cout<<"*(b+1) is: "<<*(b+1)<<endl<<endl;
-cout<<"The address of &b is: "<<&b<<endl;
-cout<<"The address of &b+1 is: "<<&b+1<<endl<<endl;
-return 0;
+int main( ){
+    vector<int>  s({1,2,3,4,5,6});
+
+    for(int i=s.size(); i>=0; --i){
+        cout<<s[i]<<endl;
+    }
+
+
+    return 0;
 }
