@@ -5,6 +5,7 @@
         "xiosbase": "cpp",
         "xlocale": "cpp",
         "xutility": "cpp",
-        "cstdlib": "cpp"
+        "cstdlib": "cpp",
+        "vector": "cpp"
     }
 }

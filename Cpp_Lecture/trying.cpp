@@ -1,13 +1,15 @@
 #include <iostream>
 #include <vector>
 using namespace std;
+
 int main( ){
-    vector<int>  s({1,2,3,4,5,6});
+    vector<int>  s[6];
 
-    for(int i=s.size(); i>=0; --i){
-        cout<<s[i]<<endl;
+    for(int i=6; i>0; --i){
+        s[i%6].push_back(i);
+        cout<<s[i%6].back();
     }
-
+    
 
     return 0;
 }
