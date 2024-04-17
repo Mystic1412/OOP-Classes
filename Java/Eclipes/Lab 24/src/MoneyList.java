@@ -142,24 +142,73 @@ public class MoneyList {
 	}
 
 	public void print_Rec() {
-		// TODO Auto-generated method stub
-		
+		MoneyNode p = first.next;
+		print_Rec_Helper(p);
   	}
-
-  	public void print_Rev_Rec() {
-		// TODO Auto-generated method stub
-		
+	public void print_Rec_Helper(MoneyNode p){
+		if (p!=null) {
+			System.out.print(p.data);
+			p=p.next;
+			print_Rec_Helper(p);
+		}
+	}
+  	public void print_Rev_Rec() {	
+  		MoneyNode p = first.next;
+		print_Rev_Helper(p);
 	}
 	
 
+	private void print_Rev_Helper(MoneyNode p) {
+		if(p==null) return;
+		print_Rev_Helper(p.next);
+		System.out.print(p.data);
+	}
+
 	public void sum_Rec() {
-		// TODO Auto-generated method stub
+		MoneyNode p = first.next;
+		double sum = sumMoneyHelper(0.0, p );
+		System.out.println(sum);
+	}
+
+	private double sumMoneyHelper(double s, MoneyNode p) {
+		int sum_bill =0;
+		int sum_coin =0;
+		double sum = 0.0;
 		
+		if(p==null)return s;
+		if(p.data instanceof Bill) {
+			sum_bill = ((Bill)p.data).getValue();
+		}else {
+			sum_coin = ((Coin)p.data).getValue();
+		}
+		sum_bill = sum_bill + sum_coin/100;
+		sum_coin = sum_coin % 100;
+		sum= sum_bill + sum_coin*0.01;
+		s = s + sum;
+		p = p.next;
+		return sumMoneyHelper(s,p);
 	}
 
 	public void sumQuartar_Rec() {
-		// TODO Auto-generated method stub
+		MoneyNode p = first.next;
+		double sum = sumQuartarHelper(0.0, p );
+		System.out.println(sum);
 		
+	}
+
+	private double sumQuartarHelper(double s, MoneyNode p) {
+		int sum_coin =0;
+		double sum = 0.0;
+		
+		if(p==null)return s;
+		if(p.data instanceof Quarter) {
+			sum_coin = ((Coin)p.data).getValue();
+		}
+		sum_coin = sum_coin % 100;
+		sum=  sum_coin*0.01;
+		s = s + sum;
+		p = p.next;
+		return sumQuartarHelper(s,p);
 	}
 	
 } // class LinkedList

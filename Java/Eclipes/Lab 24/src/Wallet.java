@@ -27,7 +27,8 @@ public class Wallet {
 	  walletContents.sum_Rec();
   }
   
-  public void getQuartar_Rec() {
+  public void getQuarter_Rec() {
 	  walletContents.sumQuartar_Rec();
   }
+
 }
