@@ -3,12 +3,14 @@
 using namespace std;
 
 int main( ){
-    vector<int>  s[6];
+    vector<char>  v[];
+    // ..
+    // Created vector v earlier in the code 
+    cout << v.push_back('f') << " "; 
+    cout << v.push_back('g') << " ";
+    cout << v.push_back('h') << " ";
+    cout << v.push_back('i') << " ";
 
-    for(int i=6; i>0; --i){
-        s[i%6].push_back(i);
-        cout<<s[i%6].back();
-    }
     
 
     return 0;

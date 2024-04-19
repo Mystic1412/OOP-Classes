@@ -1,10 +1,12 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
 int main() {
-   int i = 0;
-    while (i < 5){
-    i++;
-    cout << i;}
+   vector<char> v = {'a','b','c','x','y','g'};
+   cout<<v.back();
+   cout<<v.back();
+   cout<<v.back();
+
     return 0;
 }
