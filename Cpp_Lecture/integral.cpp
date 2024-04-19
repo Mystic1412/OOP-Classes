@@ -5,7 +5,7 @@ using namespace std;
 typedef double (*func)(double);
 
 double integrate(func f, double a, double b){
-    double sum=0, x=a, d=.000001; 
+    double sum=0, x=a, d=.0001; 
     while(x<b){
         sum += f(x)*d;
         x += d;
