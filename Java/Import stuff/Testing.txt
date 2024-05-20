@@ -1,0 +1,1 @@
+Java is an Object-Oriented Programming language developed by James Gosling in the early 1990s. The team initiated this project to develop a language for digital devices such as set-top boxes, television, etc. Orginally C++ was considered to be used in the project but the idea was rejected for several reasons (For instance C++ required more memory). 
